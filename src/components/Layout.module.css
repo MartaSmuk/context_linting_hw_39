@@ -1,0 +1,30 @@
+/* Layout.module.css */
+
+.header {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    background-color: #333; 
+    color: #fff; 
+    padding: 20px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    z-index: 1000; 
+}
+
+.header a {
+    color: #fff; 
+    text-decoration: none; 
+    margin: 0 90px; 
+    font-weight: bold; 
+}
+
+.header a:hover {
+    color: #f0f0f0; 
+}
+
+main {
+    margin-top: 80px; 
+}
