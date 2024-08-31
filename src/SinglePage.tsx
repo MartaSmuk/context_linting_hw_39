@@ -24,17 +24,17 @@ export function SinglePage() {
             {photos &&(
                 <>
                     <h1>Photos in Album {id}</h1>
-                    {/* <img src={photo.id} alt={photo.title} /> */}
                     <ul>
                         {photos.map((photo) => (
                             <li key={photo.id}>
-                                <img src={photo.thumbnailUrl} alt={photo.title} />
-                                <p>{photo.title}</p>
+                                <div>
+                                    <img src={photo.thumbnailUrl} alt={photo.title} />
+                                    <p>{photo.title}</p>
+                                </div>
                             </li>
                         ))}
                         </ul>
                     <Link to="/albums">Back to Albums</Link>
-                    {/* <p>{pohoto.thumbnailUrl}</p> */}
                 </>
             )
 

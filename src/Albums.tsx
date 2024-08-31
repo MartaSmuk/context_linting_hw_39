@@ -1,32 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-
-interface Album {
-    userId: number;
-    id: number;
-    title: string;
-  }
+import { AlbumsContext } from './context/AlbumsProvider';
+import { Album } from './models/Album.tsx';
 
 export function Albums() {
-    const [albums, setAlbums] = useState<Album[]>([]);
+  const context = useContext(AlbumsContext);
 
-    useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/albums')
-            .then(res => res.json())
-            .then((data: Album[]) => setAlbums(data))
-            .catch(error => console.error("Error fetching albums:", error));
-    }, []);
+  if (!context) {
+    return <div>Error: Albums context is not available.</div>;
+  }
 
-    return(
-        <>
-            <h1>Our Albums</h1>
-            {
-                albums.map( album => (
-                    <Link key={album.id} to={`/albums/${album.id}`}>
-                        <li>{album.title}</li>
-                    </Link>
-                ))
-            }
-        </>
-    )
+  const { albums } = context;
+
+  return (
+    <>
+      <h1>Our Albums</h1>
+      <ul>
+        {albums.map((album: Album) => (
+          <li key={album.id}>
+            <Link to={`/albums/${album.id}`}>{album.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 }

@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import AlbumsProvider from './context/AlbumsProvider.tsx'
 
 import { Layout } from './components/Layout'
 import { Home } from './Home.tsx'
@@ -10,15 +11,19 @@ import { SinglePage } from './SinglePage.tsx'
 function App() {
   return (
     <>
-        <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/albums" element={<Albums />} />
-              <Route path="/albums/:id" element={<SinglePage />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-        </Routes>
+      <AlbumsProvider>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                  <Route index element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/albums" element={<Albums />} />
+                  <Route path="/albums/:id" element={<SinglePage />} />
+                  <Route path="*" element={<NotFound />} />
+                </Route>
+            </Routes>
+          </BrowserRouter>
+      </AlbumsProvider>
     </>
   )
 }
